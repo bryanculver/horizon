@@ -695,3 +695,9 @@ tfoot tr td { border-top: 1px solid #DDD }
 .form-inline {
   display: inline;
 }
+form.eFilter input {
+  margin: 0 5px 0 10px;
+}
+form.eFilter label {
+  float: none;
+}

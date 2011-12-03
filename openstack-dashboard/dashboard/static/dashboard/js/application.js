@@ -83,6 +83,18 @@ $(function(){
   })
   
   $("table.eSorter").tablesorter();
+  $('table.eFilter th input[type=hidden].eFilterable').each(function(i, el){
+    var tmpIn = $(document.createElement('input'));
+    tmpIn.attr('name', $(el).attr('name')).attr('id', $(el).attr('name')+"_filter").attr('type', 'checkbox');
+    if(!$(el).hasClass('hide')) { tmpIn.attr('checked', 'checked'); }
+    if($(el).hasClass('lock')) { tmpIn.attr('disabled', 'disabled'); }
+    tmpIn.columnar({container: $(el).parents('table')});
+    var tmpLbl = $(document.createElement('label'));
+    tmpLbl.attr('for', $(el).attr('name')+"_filter").text($(el).parent().text());
+    $('form[name='+($(el).parents('table').attr('id'))+']').append(tmpIn);
+    $('form[name='+($(el).parents('table').attr('id'))+']').append(tmpLbl);
+    //el.columnar({container: $('table#'+(el.parent('form').attr('name')))});
+  });
 
   $(".disable").click(function(e){
     var response = confirm('Are you sure you want to disable the '+$(this).attr('title')+" ?");
